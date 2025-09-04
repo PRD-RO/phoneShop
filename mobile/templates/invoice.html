@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+{%  block content %}
+<div class="card">
+    <div class="card-body mx-4">
+        <div class="container">
+            <p class="my-5 mx-5" style="font-size:30px;">شكرا لشرائكم من متجرنا</p>
+            <div class="row">
+                
+                <ul calss="list-unstyled">
+                    <li class=" list-unstyled text-black" style="font-weight: bold;"><span class="text-black">Invoice #{{order.id}}</span></li>
+                    <li class=" list-unstyled text-black" style="font-weight: bold;">{{ order.created_at }}</li>
+                </ul>
+                <hr>
+                <table>
+                    <thead>
+                     <tr>
+                        <th>رقم المنتج</th>
+                        <th>اسم المنتج</th>
+                        <th>سعر المنتج</th>
+                        <th>صورة المنتج</th>
+                     </tr>
+                    </thead>
+                     <tbody>
+                        
+                        {% for item in order_items %}
+                        <tr>
+                            <td>
+                               {{ item.product.id }}
+                            </td>
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.price }}</td>
+                            <td>
+                            {% if item.product.image %}
+                             <img src="{{ item.product.image.url }}" width=80 hight=80 alt="{{ itme.product.name }}">
+                             {% else %}
+                             no pic 
+                             {% endif %} </td>
+                        <tr>
+                            {% empty %}
+                            <td colspan="5">لاتوجد منتجات</td>
+                        </tr>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+
+            <h5><strong> المجموع الكلي {{ grand_total }}</strong></h5>
+        </div>
+        
+    </div>
+</div>
+{%endblock%}

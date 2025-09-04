@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+{%load static%}
+{% block content%}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+
+        {% for itme in product %}
+
+           <div class="col-12 col-md6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+             <div class="card-header">
+                <img src="{{itme.image.url}}" class="card-img-top" style="height:250px;object-fit:contain;">
+             </div>
+                <div class="card-body">
+                  <div class="row">
+                     <div class="col">
+                     <ul class="list-unstyles small">
+                        <li class=" list-inline pt-2"><a href="{% url 'AddToCart' %}?id={{itme.id}}" class="btn btn-info">اضف الى السلة</a></li>
+                        <li class=" list-inline pt-2"><a href="{% url 'authLogin' %}" class="btn btn-outline-danger">مواصلة الشراء</a></li>
+                     </ul>
+                     </div>
+                     <div class="col">
+                        <h5 class="card-title">{{itme.name}}</h5>
+                <p class="text-muted">{{ itme.brand}}</p>
+                <ul class="list-unstyled small">
+                    <li class="list-inline-item">السعة {{ itme.storage}}</li>
+                    <li class="list-inline-item">اللون {{ itme.color}}</li>
+                </ul>
+                     </div>
+                  </div>
+                
+                <div class="card-footer bg-white d-flex judtify-content-between">
+                 <span class="fw-bold text-success">رس{{itme.price}}</span>
+                </div>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{%endblock%}

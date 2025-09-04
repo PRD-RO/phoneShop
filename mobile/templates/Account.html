@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <span><strong>حسابي:</strong></span>
+                  <p>اسم المستخدم :{{ user.username }}</p>
+                  <p>الايميل:{{ user.email }}</p>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

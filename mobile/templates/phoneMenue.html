@@ -1,0 +1,30 @@
+{% extends 'base.html'%}
+{%load static%}
+{% block content%}
+<div class="container">
+    <h1 class="mb-4 text-center">قائمة الهواتف</h1>
+    <div class="row d-flex justify-content-around">
+        {% for itme in product %}
+        <div class="col-12 col-md6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+             <div class="card-header">
+                <img src="{{itme.image.url}}" class="card-img-top" style="height:250px;object-fit:contain;">
+             </div>
+                <div class="card-body">
+                <h5 class="card-title">{{itme.name}}</h5>
+                <p class="text-muted">{{ itme.brand}}</p>
+                <ul class="list-unstyled small">
+                    <li>السعة {{ itme.storage}}</li>
+                    <li>اللون {{ itme.color}}</li>
+                </ul>
+                <div class="card-footer bg-white d-flex judtify-content-between">
+                 <span class="fw-bold text-success">رس{{itme.price}}</span>
+                 <a href="{% url 'detailes' %}?id={{itme.id}}"class="btn btn-success">التفاصيل</a>
+                </div>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{%endblock%}
